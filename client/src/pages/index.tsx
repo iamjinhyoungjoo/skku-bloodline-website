@@ -2,25 +2,41 @@ import Container from "@mui/material/Container";
 import { Grid } from "@mui/material";
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
+import Post from "@/components/Post";
+import { PostProps } from "@/interfaces";
 
-const sections = [
-  { title: "About 혈통", url: "#" },
-  { title: "역대 공연 리스트", url: "#" },
-  { title: "역대 노래 리스트", url: "#" },
-  { title: "역대 팀 리스트", url: "#" },
-  { title: "가입 문의", url: "#" },
-];
+interface HomeProps {
+  concerts: PostProps[];
+}
 
-export default function Home() {
+export default function Home({ concerts }: HomeProps) {
   return (
     <Container maxWidth='lg'>
-      <Header
-        title='🔥 화려한 혈통 🔥'
-        sections={sections}
-      />
+      <Header />
       <main>
         <Banner />
       </main>
+      {concerts.map((concert) => {
+        return (
+          <Post
+            key={concert.id}
+            concert={concert}
+          />
+        );
+      })}
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch("http://43.201.134.147:8080/api/concerts");
+  const json = await res.json();
+  const concerts = json.data;
+
+  return {
+    props: {
+      concerts,
+    },
+    revalidate: 100,
+  };
 }

@@ -1,6 +1,7 @@
 import Container from "@mui/material/Container";
 import { Grid } from "@mui/material";
 import Header from "@/components/Header";
+import Banner from "@/components/Banner";
 
 const sections = [
   { title: "About 혈통", url: "#" },
@@ -17,6 +18,9 @@ export default function Home() {
         title='🔥 화려한 혈통 🔥'
         sections={sections}
       />
+      <main>
+        <Banner />
+      </main>
     </Container>
   );
 }

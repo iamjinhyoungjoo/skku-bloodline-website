@@ -29,9 +29,14 @@ export default function Home({ concerts }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://43.201.134.147:8080/api/concerts");
-  const json = await res.json();
-  const concerts = json.data;
+  let concerts = [];
+  try {
+    const res = await fetch("http://43.201.134.147:8080/api/concerts");
+    const json = await res.json();
+    concerts = json.data;
+  } catch (e) {
+    console.log("Error: ", e);
+  }
 
   return {
     props: {

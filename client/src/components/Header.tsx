@@ -1,16 +1,15 @@
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
-import Link from "@mui/material/Link";
+import Link from "next/link";
 
 export default function Header() {
-  const title = "🔥 화려한 혈통 🔥";
+  const title = "SKKU BLOODLINE";
   const sections = [
-    { title: "About 혈통", url: "#" },
-    { title: "역대 공연 리스트", url: "#" },
-    { title: "역대 노래 리스트", url: "#" },
-    { title: "역대 팀 리스트", url: "#" },
-    { title: "가입 문의", url: "#" },
+    { title: "ABOUT", url: "/about" },
+    { title: "EVENTS", url: "/events" },
+    { title: "APPLY", url: "/apply" },
+    { title: "FAQ", url: "/faq" },
   ];
 
   return (
@@ -36,7 +35,6 @@ export default function Header() {
           {sections.map((section) => (
             <Link
               color='inherit'
-              noWrap
               key={section.title}
               variant='body2'
               href={section.url}
